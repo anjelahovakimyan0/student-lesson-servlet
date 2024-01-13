@@ -1,10 +1,13 @@
 package org.example.studentlessonservlet.util;
 
+import lombok.experimental.UtilityClass;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class DateUtil {
+@UtilityClass
+public class DateUtil {
 
     private static final SimpleDateFormat SDF = new SimpleDateFormat("hh:mm");
 
