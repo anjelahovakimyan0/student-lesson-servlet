@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateUtil {
+public abstract class DateUtil {
 
     private static final SimpleDateFormat SDF = new SimpleDateFormat("hh:mm");
 
