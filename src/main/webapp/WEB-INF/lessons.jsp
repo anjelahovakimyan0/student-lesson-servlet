@@ -25,6 +25,7 @@ Lessons | <a href="/addLesson">Add lesson</a>
         <th>Lecturer name</th>
         <th>Price</th>
         <th>Delete</th>
+        <th>Update</th>
     </tr>
     <% for (Lesson lesson : lessons) { %>
     <tr>
@@ -38,8 +39,8 @@ Lessons | <a href="/addLesson">Add lesson</a>
         </td>
         <td><%=lesson.getPrice()%>
         </td>
-        <td><a href="/deleteLesson?id=<%=lesson.getId()%>"><%=lesson.getName()%>
-        </a></td>
+        <td><a href="/deleteLesson?id=<%=lesson.getId()%>">delete</a></td>
+        <td><a href="/updateLesson?id=<%=lesson.getId()%>">update</a></td>
     </tr>
     <% } %>
 </table>

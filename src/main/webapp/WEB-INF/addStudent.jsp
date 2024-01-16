@@ -1,6 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="org.example.studentlessonservlet.model.Lesson" %>
-<%@ page import="org.example.studentlessonservlet.util.DateUtil" %><%--
+<%@ page import="org.example.studentlessonservlet.model.Lesson" %><%--
   Created by IntelliJ IDEA.
   User: sky
   Date: 12.01.2024
@@ -15,7 +14,7 @@
 <body>
 <% List<Lesson> lessons = (List<Lesson>) request.getAttribute("lessons"); %>
 
-<form action="/addStudent" method="post">
+<form action="/addStudent" method="post" enctype="multipart/form-data">
     Name: <input type="text" name="name"><br>
     Surname: <input type="text" name="surname"><br>
     Email: <input type="email" name="email"><br>
@@ -25,7 +24,8 @@
         <option value="<%=lesson.getId()%>"><%=lesson.getName()%>
         </option>
         <% } %>
-    </select>
+    </select><br>
+    <input type="file" name="picture"><br>
     <input type="submit" value="Send">
 </form>
 </body>

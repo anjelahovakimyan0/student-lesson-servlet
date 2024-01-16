@@ -77,4 +77,17 @@ public class LessonManager {
         }
         return null;
     }
+
+    public void update(Lesson lesson) {
+        String sql = "UPDATE lesson SET name = ?, duration = ?, lecturer_name = ?, price = ? WHERE id=" + lesson.getId();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, lesson.getName());
+            preparedStatement.setString(2, DateUtil.dateToString(lesson.getDuration()));
+            preparedStatement.setString(3, lesson.getLecturerName());
+            preparedStatement.setDouble(4, lesson.getPrice());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
