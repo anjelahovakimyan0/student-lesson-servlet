@@ -4,6 +4,7 @@ import org.example.studentlessonservlet.manager.LessonManager;
 import org.example.studentlessonservlet.manager.StudentManager;
 import org.example.studentlessonservlet.model.Lesson;
 import org.example.studentlessonservlet.model.Student;
+import org.example.studentlessonservlet.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -50,15 +51,23 @@ public class AddStudentServlet extends HttpServlet {
             picture.write(UPLOAD_DIRECTORY + File.separator + picName);
         }
 
-        studentManager.addStudent(Student.builder()
-                .name(name)
-                .surname(surname)
-                .email(email)
-                .age(age)
-                .lesson(lesson)
-                .picName(picName)
-                .build());
+        User user = (User) req.getSession().getAttribute("user");
 
-        resp.sendRedirect("/students");
+        if (studentManager.getStudentByEmail(email) != null) {
+            req.getSession().setAttribute("msg", "Student with email " + email + " already exists!");
+            resp.sendRedirect("/addStudent");
+        } else {
+            studentManager.addStudent(Student.builder()
+                    .name(name)
+                    .surname(surname)
+                    .email(email)
+                    .age(age)
+                    .lesson(lesson)
+                    .picName(picName)
+                    .user(user)
+                    .build());
+
+            resp.sendRedirect("/students");
+        }
     }
 }

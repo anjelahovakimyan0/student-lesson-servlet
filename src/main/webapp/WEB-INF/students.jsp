@@ -26,6 +26,7 @@ Students | <a href="/addStudent">Add student</a>
         <th>Surname</th>
         <th>Email</th>
         <th>Age</th>
+        <th>User added</th>
         <th>Lesson name</th>
         <th>Lesson's lecturer name</th>
         <th>Delete</th>
@@ -48,6 +49,8 @@ Students | <a href="/addStudent">Add student</a>
         <td><%=student.getEmail()%>
         </td>
         <td><%=student.getAge()%>
+        </td>
+        <td><%=student.getUser().getName() + " " + student.getUser().getSurname()%>
         </td>
         <td><%=student.getLesson().getName()%>
         </td>

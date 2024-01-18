@@ -2,6 +2,7 @@ package org.example.studentlessonservlet.servlet;
 
 import org.example.studentlessonservlet.manager.LessonManager;
 import org.example.studentlessonservlet.model.Lesson;
+import org.example.studentlessonservlet.model.User;
 import org.example.studentlessonservlet.util.DateUtil;
 
 import javax.servlet.ServletException;
@@ -28,13 +29,21 @@ public class AddLessonServlet extends HttpServlet {
         Date duration = DateUtil.stringToDate(req.getParameter("duration"));
         String lecturerName = req.getParameter("lecturerName");
         double price = Double.parseDouble(req.getParameter("price"));
-        lessonManager.addLesson(Lesson.builder()
-                .name(name)
-                .duration(duration)
-                .lecturerName(lecturerName)
-                .price(price)
-                .build());
+        User user = (User) req.getSession().getAttribute("user");
 
-        resp.sendRedirect("/lessons");
+        if (lessonManager.getLessonByName(name) != null) {
+            req.getSession().setAttribute("msg", "Lesson with name " + name + " already exists!");
+            resp.sendRedirect("/addLesson");
+        } else {
+            lessonManager.addLesson(Lesson.builder()
+                    .name(name)
+                    .duration(duration)
+                    .lecturerName(lecturerName)
+                    .price(price)
+                    .user(user)
+                    .build());
+
+            resp.sendRedirect("/lessons");
+        }
     }
 }

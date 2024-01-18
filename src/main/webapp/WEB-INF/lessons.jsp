@@ -24,6 +24,7 @@ Lessons | <a href="/addLesson">Add lesson</a>
         <th>Duration</th>
         <th>Lecturer name</th>
         <th>Price</th>
+        <th>User added</th>
         <th>Delete</th>
         <th>Update</th>
     </tr>
@@ -38,6 +39,8 @@ Lessons | <a href="/addLesson">Add lesson</a>
         <td><%=lesson.getLecturerName()%>
         </td>
         <td><%=lesson.getPrice()%>
+        </td>
+        <td><%=lesson.getUser().getName() + " " + lesson.getUser().getSurname()%>
         </td>
         <td><a href="/deleteLesson?id=<%=lesson.getId()%>">delete</a></td>
         <td><a href="/updateLesson?id=<%=lesson.getId()%>">update</a></td>

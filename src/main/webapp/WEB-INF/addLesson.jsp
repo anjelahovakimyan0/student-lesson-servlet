@@ -11,6 +11,10 @@
     <title>Add Lesson</title>
 </head>
 <body>
+<% if (session.getAttribute("msg") != null) { %>
+<span style="color: red"><%=session.getAttribute("msg")%></span>
+<% session.removeAttribute("msg"); %>
+<% } %>
 <form action="/addLesson" method="post">
     Name: <input type="text" name="name"><br>
     Duration: <input type="time" name="duration"><br>
